@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid');
 const notes = new Map();
 
 async function create(data) {
@@ -5,8 +6,10 @@ async function create(data) {
         throw new Error("Title and userId are required");
     }
     const note = {
-        id: Date.now().toString(),
-        ...data
+        id: uuidv4(),
+        ...data,
+        createdAt: new Date(),
+        updatedAt: new Date()
     }
     notes.set(note.id, note);
     return note;
@@ -21,7 +24,7 @@ async function findByIdAndUpdate(id, data) {
     if (!note) {
         return undefined;
     }
-    const updatedNote = { ...note, ...data };
+    const updatedNote = { ...note, ...data, updatedAt: new Date() };
     notes.set(id, updatedNote);
     return updatedNote;
 }
