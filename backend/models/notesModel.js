@@ -2,8 +2,8 @@ const { v4: uuidv4 } = require('uuid');
 const notes = new Map();
 
 async function create(data) {
-    if (!data.title || !data.userId) {
-        throw new Error("Title and userId are required");
+    if (!data.title) {
+        throw new Error("Title is required");
     }
     const note = {
         id: uuidv4(),

@@ -4,8 +4,8 @@ const ErrorHandler = require("../utils/errorHandler");
 
 // Create New Note
 exports.newNote = asyncErrorHandler(async (req, res, next) => {
-  const { title, content, userId } = req.body;
-  const note = await Notes.create({ title, content, userId });
+  const { title, content } = req.body;
+  const note = await Notes.create({ title, content });
   res.status(201).json({ success: true, message: "Note created successfully", note });
 });
 
