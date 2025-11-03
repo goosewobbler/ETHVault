@@ -1,6 +1,9 @@
 const notes = new Map();
 
 async function create(data) {
+    if (!data.title || !data.userId) {
+        throw new Error("Title and userId are required");
+    }
     const note = {
         id: Date.now().toString(),
         ...data
