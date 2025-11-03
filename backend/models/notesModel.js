@@ -19,14 +19,16 @@ async function findById(id) {
     return notes.get(id);
 }
 
-async function findByIdAndUpdate(id, data) {
+async function findByIdAndUpdate(id, data, options = { new: false }) {
     const note = notes.get(id);
     if (!note) {
         return undefined;
     }
     const updatedNote = { ...note, ...data, updatedAt: new Date() };
     notes.set(id, updatedNote);
-    return updatedNote;
+
+    // Return new or old note based on options (Mongoose behaviour)
+    return options.new ? updatedNote : note;
 }
 
 async function findByIdAndDelete(id) {
