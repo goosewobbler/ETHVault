@@ -24,7 +24,7 @@ exports.deleteNote = asyncErrorHandler(async (req, res, next) => {
   if (!note) {
     return next(new ErrorHandler("Note not found", 404));
   }
-  res.status(200).json({ success: true, message: "Note deleted successfully" });
+  res.status(204).send();
 });
 
 // Get All Notes
