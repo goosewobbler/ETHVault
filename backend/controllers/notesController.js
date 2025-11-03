@@ -30,7 +30,10 @@ exports.deleteNote = asyncErrorHandler(async (req, res, next) => {
 // Get All Notes
 exports.getAllNotes = asyncErrorHandler(async (req, res, next) => {
   const notes = await Notes.find();
-  res.status(200).json({ success: true, notes });
+  if (!notes.length) {
+    return next(new ErrorHandler("No notes found", 404));
+  }
+  res.status(200).json({ success: true, message: "Notes fetched successfully", notes });
 });
 
 // Update Note
