@@ -15,13 +15,19 @@ async function findById(id) {
 
 async function findByIdAndUpdate(id, data) {
     const note = notes.get(id);
-    note.title = data.title;
-    note.content = data.content;
-    return note;
+    if (!note) {
+        return undefined;
+    }
+    const updatedNote = { ...note, ...data };
+    notes.set(id, updatedNote);
+    return updatedNote;
 }
 
 async function findByIdAndDelete(id) {
     const note = notes.get(id);
+    if (!note) {
+        return undefined;
+    }
     notes.delete(id);
     return note;
 }
