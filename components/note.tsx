@@ -5,8 +5,8 @@ import type { Note } from "@/types/notes"
 
 type NoteProps = {
     note: Note
-    onEdit: () => void
-    onDelete: () => void
+    onEdit: (() => void) & { __isClientHandler?: true }
+    onDelete: (() => void) & { __isClientHandler?: true }
 }
 
 export function Note({ note, onEdit, onDelete }: NoteProps) {
