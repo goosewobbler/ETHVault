@@ -1,14 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-
-type Note = {
-    id: string
-    title: string
-    content: string
-    createdAt: string
-    updatedAt: string
-}
+import type { Note } from "@/types/notes"
 
 type NoteProps = {
     note: Note

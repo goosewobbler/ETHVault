@@ -5,15 +5,7 @@ import axios from "axios"
 import { NoteForm } from "@/components/note-form"
 import { CreateNoteButton } from "@/components/create-note-button"
 import { Note as NoteComponent } from "@/components/note"
-
-
-type Note = {
-    id: string
-    title: string
-    content: string
-    createdAt: string
-    updatedAt: string
-}
+import type { Note } from "@/types/notes"
 
 const api = axios.create({
     baseURL: 'http://localhost:4001',
